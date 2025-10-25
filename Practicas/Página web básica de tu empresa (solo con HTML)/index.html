@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Página web básica de tu empresa (solo con HTML)</title>
+</head>
+<body>
+    <h1>Página web básica de tu empresa (solo con HTML)</h1>
+
+    <img src="imagen_header.webp" width="300" alt="Ropa deportiva para la familia" title="Ropa deportiva para la familia">
+    
+    <p></p>
+    
+    <a href="https://www.reebok.eu/es-es?cm_mmc=ReebokSEM_Google-_--_-Reebok-Exact-_-reebok&cm_mmca1=ES&cm_mmca2=e&gclsrc=aw.ds&gad_source=1&gad_campaignid=115133054&gbraid=0AAAAADunbuTT-wEe6EtpG800TvWpjWBe_&gclid=CjwKCAjw6vHHBhBwEiwAq4zvAwTs8-7THrVApXx49nVy5JTf5lTJHddNdBA3cILFG17Wm-LZksp79hoCmaIQAvD_BwE" target="_blank">Visitar tienda</a>
+    
+    <p></p>
+
+    <section id="contacto">
+
+        <!--Inicio del formulario-->
+        <form>
+            <fieldset>
+                <p></p>
+                <legend>Rellena el formulario</legend>
+
+                <label>Nombre:</label>
+                    <input type="text" placeholder="Escribe aquí tu nombre"><!--Selector tipo texto-->
+                </label>
+                <p></p> 
+                
+                <label>Email:
+                <input type="email" placeholder="Introduce tu correo"> <!--Verifica formato mail-->
+                </label>
+                <p></p>
+
+                <label>Teléfono:
+                <input type="tel" placeholder="Introduce tu teléfono"> <!--Verifica formato teléfono-->
+                </label>
+                <p></p>
+
+                <label>Fecha de nacimiento: <!--Selector de fecha-->
+                <input type="date">
+                </label>
+
+                <p></p>
+                
+                <label>Selecciona tu talla:</label>
+
+                <p></p>
+
+                <!--Radio Buttons-->
+
+                <input type="radio" name="talla" value="small" checked>
+                <label>Small</label>
+
+                <input type="radio" name="talla" value="medium">
+                <label>Medium</label>
+
+                <input type="radio" name="talla" value="large">
+                <label>Large</label>
+
+                <p></p>
+
+                <fieldset>
+                    <legend>Selecciona tu talla</legend>
+
+                    <input type="radio" name="talla" value="small" checked>
+                    <label>Small</label>
+
+                    <input type="radio" name="talla" value="medium">
+                    <label>Medium</label>
+
+                    <input type="radio" name="talla" value="large">
+                    <label>Large</label>
+
+                </fieldset>
+
+                <p></p>
+                
+                <label>Selecciona tu articulo:</label> 
+
+                <!--Select-->
+
+                <select name="articulos">
+                    <option value="sinSelect">-----</option>
+                    <option value="holandes">Zapatillas</option>
+                    <option value="espanol">Pantalones</option>
+                    <option value="portugues">Sudaderas</option>
+                    <option value="sinSemilla">Camisetas</option>
+                </select>
+
+                <p></p>
+
+                <label>Comentarios:</label> 
+
+                <p></p>
+
+                <!--Text area-->
+
+                <textarea name="comentarios"></textarea>
+
+            </fieldset>
+
+            <p></p>
+
+            <button type="submit">Enviar</button><!--Botón para enviar el formuñario-->
+
+            <p></p>
+
+            <fieldset>
+                <legend>Selecciona tu talla</legend>
+
+                <input type="radio" name="talla" value="small" checked>
+                <label>Small</label>
+
+                <input type="radio" name="talla" value="medium">
+                <label>Medium</label>
+
+                <input type="radio" name="talla" value="large">
+                <label>Large</label>
+
+            </fieldset>
+
+            <p></p>
+
+        
+        </form>
+    </section>
+
+</body>
+</html>

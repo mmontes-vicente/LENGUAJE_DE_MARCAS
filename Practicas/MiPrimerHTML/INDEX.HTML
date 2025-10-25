@@ -78,21 +78,111 @@
     <p></p>
     <section id="contacto"=>
 
+        <!--Inicio del formulario-->
         <form>
-            <label>Nombre:</label>
-            <input type="text" placeholder="Escribe aquí tu nombre">
-            <p></p>
-            <label>Edad:</label>
-            <input type="number" placeholder="Escribe aquí tu edad">
-            <p></p>
-            <label>Fecha de nacimiento:</label>
-            <input type="date">
-            <p></p>
-            <label>Email:</label>
-            <input type="email" placeholder="Introduce tu correo">
-            <p></p>
-            <button type="submit">Enviar</button>
-        
+            <fieldset>
+                <legend>Datos básicos</legend>
+                <label>Nombre:</label>
+                <input type="text" placeholder="Escribe aquí tu nombre">
+                </label>
+                <p></p>
+
+                <label>Edad:</label>
+                <input type="number" min="10" max="20" step="1.5" placeholder="Escribe aquí tu edad">
+                <p></p>
+
+                <label>Fecha de nacimiento:</label> <!--Selector de fecha-->
+                <input type="date">
+                <p></p>
+
+                <label>Email:</label>
+                <input type="email" placeholder="Introduce tu correo"> <!--Verifica formato mail-->
+                <p></p>
+
+                <label>Teléfono:
+                <input type="tel" placeholder="Introduce tu teléfono"> <!--Verifica formato mail-->
+                </label>
+                <p></p>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Fecha, hora y núneros</legend>
+
+                <label>Hora preferida
+                    <input type="time">
+                </label>
+                <p></p>
+
+                 <label>Mes:
+                    <input type="month">
+                </label>
+                <p></p>
+
+                 <label>Semana preferida:
+                    <input type="week">
+                </label>
+                <p></p>
+
+                <label>Cita (fecha y hora):
+                    <input type="datatime-local">
+                </label>
+                <p></p>
+
+                <label>Prioridad ( 0 - 100): </label>
+                    <input id="valorRango" type="range" min="0" max="1000" value="500" oninput="document.getElementById('nRango').value=this.value"> <!-- Verifica formato email -->
+                    <output id="nRango">500</output>
+                <p></p>
+
+                <label>Color:</label>
+                    <input type="color">
+                <p></p>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Selectores</legend>
+
+                <fieldset>
+                    <legend>Tipo de Pepino</legend>
+
+                    <input type="radio" name="tipoPepino" value="moreno" checked>
+                    <label>Pepino Moreno</label>
+
+                    <input type="radio" name="tipoPepino" value="rubio">
+                    <label>Pepino Rubio</label>
+
+                    <input type="radio" name="tipoPepino" value="albino">
+                    <label>Pepino Albino</label>
+
+                </fieldset>
+
+                 <fieldset>
+                    <legend>Extras</legend>
+
+                    <input type="checkbox" name="extras" value="pinha" checked>
+                    <label>Piña</label>
+
+                    <input type="checkbox" name="extras" value="nocilla" checked>
+                    <label>Nocilla</label>
+
+                    <input type="checkbox" name="extras" value="costilleta">
+                    <label>Costilleta</label>
+                    
+                </fieldset>
+            <p></p>    
+            <label>Variedad de pepino</label>     
+            <select name="variedad">
+                <option value="sinSelect">-----</option>
+                <option value="holandes">Holandés</option>
+                <option value="espanol">Español</option>
+                <option value="portugues">Portugues</option>
+                <option value="sinSemilla">Sin Semilla</option>
+
+            </select>  
+
+            </fieldset>
+            <button type="submit">Enviar</button><!--Botón para enviar el formuñario-->
         </form>
 
     </section>
