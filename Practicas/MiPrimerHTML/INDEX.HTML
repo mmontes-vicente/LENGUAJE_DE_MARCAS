@@ -176,12 +176,58 @@
                 <option value="sinSelect">-----</option>
                 <option value="holandes">Holandés</option>
                 <option value="espanol">Español</option>
+                <optgroup label="Modernos">
                 <option value="portugues">Portugues</option>
                 <option value="sinSemilla">Sin Semilla</option>
+                </optgroup>
 
-            </select>  
+            </select>
+            
+            <p></p>
+            <p></p>
+            <label>Lote (Eleige varios):</label>
+            
+            <!--Selector multiple-->
+            <select name="lotes[]" multiple size="4">
+                <option value="lote-a"> LOTE A</option>
+                <option value="lote-b"> LOTE B</opt ion>
+                <option value="lote-c"> LOTE C</option>
+                <option value="lote-d"> LOTE D</option>
+                <option value="lote-e"> LOTE E</option>
+                <option value="lote-d"> LOTE F</option>
+            </select>
 
             </fieldset>
+
+            <fieldset>
+
+                <!--Selector multiple-->
+                <legend>Textos y archivos</legend>
+
+                <label>Observaciones</label>
+
+                <textarea id="textArea1" rows="4" cols="40"></textarea>
+
+                <p></p>
+                <p></p>
+
+                <label>Adjuntar factura (s):</label>
+                <input id="facturas" type="file" accept=".pdf, .jpg" multiple>
+
+            </fieldset>
+
+            <fieldset>
+
+                <!--Selector multiple-->
+                <legend>Barra de progreso</legend>
+
+                <label>Progreso de la carga</label>
+                <progress value="70" max="100"></progress>
+
+                
+
+            </fieldset>
+
             <button type="submit">Enviar</button><!--Botón para enviar el formuñario-->
         </form>
 
