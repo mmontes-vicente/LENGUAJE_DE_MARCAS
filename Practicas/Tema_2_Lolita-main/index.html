@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercería Lolita</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+    <header>
+        <h1>Mercería Lolita</h1>
+        <p>Hilos, botones y cintitas, ¡todo mono y a buen precio guapi!</p>
+        <img src="logo.jpg" alt="Carrete de hilo sonriente" class="logo">
+    </header>
+
+    <main class="layout">
+        <article class="content">
+            <h2>Lo que encontrarás en nuestra mercería</h2>
+            <p>
+                En <strong>Mercería Lolita</strong> cosemos y remendamos.
+                Si algo se descose, no te pongas loc@
+            </p>
+
+            <ol>
+                <li>Arreglos de ropa: bajos, cremalleras y pequeños retoques.</li>
+                <li>Venta de botones, cremalleras, cintas y lazos de mil colores.</li>
+                <li>Lanas y agujas para que tejas jerseys, bufandas y amores.</li>
+                <li>Kits de costura para que en casa siempre tengas “mano de santo”.</li>
+            </ol>
+
+            <h3>Tarifas orientativas</h3>
+
+            <table class="tabla-tarifas">
+                <thead>
+                    <tr>
+                        <th>Servicio</th>
+                        <th>Descripción</th>
+                        <th>Coste aproximado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Arreglo de bajos</td>
+                        <td>Subimos o bajamos el dobladillo sin drama ni lío.</td>
+                        <td>Desde 8 € por prenda</td>
+                    </tr>
+                    <tr>
+                        <td>Cambio de cremallera</td>
+                        <td>Si tu cremallera se atasca, aquí la cambiamos sin chasca.</td>
+                        <td>Desde 12 €</td>
+                    </tr>
+                    <tr>
+                        <td>Kit “Costurillas Lolita”</td>
+                        <td>Hilos, agujas, botones y dedal, todo en un estuche fenomenal.</td>
+                        <td>15 € por kit</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+        <aside class="sidebar">
+            <h3>Horario de atención</h3>
+            <p>Lunes a viernes: 10:00 - 13:30 y 17:00 - 20:30</p>
+            <p>Sábados: 10:00 - 14:00</p>
+            <p>Domingos y festivos: cerramos el hilo… </p>
+
+            <h3>¿Dónde estamos?</h3>
+            <p>
+                En pleno centro del barrio, junto al café de la esquina.
+                Si te pierdes, pregunta por <strong>Lolita</strong>, 
+                que todo el mundo nos ubica.
+            </p>
+        </aside>
+
+        <section class="contacto">
+            <h2>Formulario de contacto</h2>
+            <p>
+                Si <span class="trozo">necesitas un remiendo</span> 
+                o un botón que haga juego con tu atuendo,
+                rellena este formulario, que contestamos volando… 
+            </p>
+
+            <form action="#" method="post" class="form">
+                <label class="campo">
+                    <span>Nombre:</span>
+                    <input type="text" name="nombre" placeholder="Tu nombre completo" required>
+                </label>
+
+                <label class="campo">
+                    <span>Email:</span>
+                    <input type="email" name="email" placeholder="tu@email.com" required>
+                </label>
+
+                <label class="campo">
+                    <span>Mensaje:</span>
+                    <textarea name="mensaje" rows="5" cols="40" placeholder="Cuéntanos qué necesitas coser, arreglar o comprar..."></textarea>
+                </label>
+
+                <div class="acciones">
+                    <button type="submit" class="btn btn-enviar">Enviar</button>
+                    <button type="reset" class="btn btn-borrar">Borrar</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 Mercería Lolita - Hilos de confianza</p>
+        <address>
+            Contacto: <a href="mailto:info@mercerialolita.es">info@mercerialolita.es</a><br>
+            Teléfono: <a href="tel:+34123456789">+34 123 456 789</a>
+        </address>
+    </footer>
+
+</body>
+
+</html>
