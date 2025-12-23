@@ -1,3 +1,13 @@
+:root{
+
+    --color-principal: #1d3535;
+    --color-secundario: #519393;
+    --border-radius: 8px;
+
+}
+
+
+
 * {
   margin: 0; 
   box-sizing: border-box; 
@@ -7,21 +17,31 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.25;
     background-color: aliceblue;
-    color: #333;
+    color: var(--color-primario);
     padding: 20px;
+    padding-top: 300px;
 }
 
 header{
     text-align: center;
-    background-color: fff;
+    background-color: #fff;
     border-radius: 12px;
     border: 2px solid #333;
+    margin-bottom: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.layout{
+    margin-top: 200px;
 }
 
 .btn{
     padding: 20px 25px;
     margin-top: 20px;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     cursor: pointer;
 }
 
@@ -32,11 +52,46 @@ header{
     background-color: #fff;
     border-radius: 8px;
     border: 1px solid #333;
+    clear: both;
 }
 
 .form .campo{
-
     margin-bottom: 15px;
+}
+
+.form .campo span{
+    display: block;
+    font-weight: bold;
+    margin-top: 16px;
+    margin-bottom: 4px;
+}
+
+.form input,
+.form textarea{
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid rgb(166, 166, 166);
+    font-size: 1.2rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form input:hover,
+.form textarea:hover{
+    border-color: gray;
+}
+
+.form input:focus,
+.form textarea:focus{
+    border-color: rgb(53, 100, 255);
+    box-shadow: 0 0 4px rgb(184, 184, 255);
+    outline: none;
+}
+
+.contacto .trozo{
+    font-weight: bold;
+    color: blue;
+
 }
 
 .btn-enviar{
@@ -51,4 +106,47 @@ header{
 
 .btn-enviar:hover{
     background-color: yellow;
+}
+
+.layout{
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+
+}
+
+.content{
+    width: 65%;
+    float: left;
+    background-color: #fff;
+    border: 1px solid #333;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.sidebar{
+    width: 30%;
+    float: right;
+    background-color: #fff;
+    border: 1px solid #333;
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+@media  (max-width: 768px;){
+
+    body{
+        padding-top: 120px;
+    }
+    .logo{
+        width: 90px;
+    }
+
+    .content, .sidebar{
+        width: 1000%;
+        float: none;
+    }
+    
 }
