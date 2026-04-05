@@ -1,95 +1,713 @@
+/* =========================================================
+   ZUMITOS ALEXEI · CSS GRID (comentado en profundidad)
+   Conceptos clave que se trabajan:
+   1) Layout por ÁREAS (grid-template-areas)
+   2) auto-fit (rejillas de tarjetas que se adaptan)
+   3) auto-fill (galería que “rellena” columnas disponibles)
+   4) Responsive: cambio de áreas + ajustes de columnas
+   ========================================================= */
+
+
+/* =========================================================
+   :root → Variables CSS (custom properties)
+   Sirven para:
+   - Reutilizar colores/tamaños
+   - Cambiar el tema en 1 sitio
+   - Evitar repetir valores “mágicos”
+   ========================================================= */
 :root{
+  --bg:#f5f6f7;               /* Color de fondo general de la página */
+  --card:#fff;                /* Color de fondo de “tarjetas”/secciones */
+  --text:#1f2937;             /* Color principal del texto */
+  --muted:#6b7280;            /* Color secundario (textos menos importantes) */
+  --accent:#33c26b;           /* Color de marca (botones, detalles) */
+  --shadow:0 8px 18px rgba(0,0,0,.10);
+  /* Sombra reutilizable:
+     - 0: no se desplaza en X
+     - 8px: se desplaza hacia abajo
+     - 18px: difuminado
+     - rgba(0,0,0,.10): negro al 10% de opacidad */
 
-    --bg:#f5f5f5;
-    --card:#fff;
-    --text:#141414;
-    --muted:#444444;
-    --accent: #099e3f;
-    --shadow: 0 8px 18px rgba(0,0,0, .2);
-    --radius: 16px;
-
+  --r:16px;                   /* Radio de borde estándar (redondeo) */
 }
 
+
+/* =========================================================
+   RESET / NORMALIZACIÓN BÁSICA
+   ========================================================= */
 *{
-    box-sizing: border-box;
+  box-sizing:border-box;
+  /* Cambia el modelo de caja:
+     - width/height incluyen padding y border.
+     Evita “sorpresas” de tamaño cuando añades padding/border. */
 }
 
-.body{
+body{
+  margin:0;
+  /* Quita el margen por defecto del navegador para controlar el layout tú. */
 
-    margin:0;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
-    line-height: 1.25;
+  font-family:system-ui,Arial;
+  /* system-ui: usa la fuente del sistema (más integrada con el SO).
+     Arial: fallback por si system-ui no está disponible. */
 
+  background:var(--bg);
+  /* Fondo general (se verá alrededor de secciones/tarjetas). */
+
+  color:var(--text);
+  /* Color base del texto en toda la web. */
+
+  line-height:1.35;
+  /* Aumenta el interlineado para mejorar legibilidad. */
 }
 
 img{
+  max-width:100%;
+  /* Impide que la imagen se salga del contenedor (responsive por defecto). */
 
-    max-width: 100%;
-    display: block;
-
+  display:block;
+  /* Evita el “hueco” inferior típico de imágenes inline (baseline). */
 }
 
+
+/* =========================================================
+   1) LAYOUT PRINCIPAL POR ÁREAS
+   Aquí se ve el “Grid avanzado” a nivel de página:
+   - Definimos columnas
+   - Definimos áreas (header/nav/main/aside/footer)
+   - Reordenamos las áreas con media queries
+   ========================================================= */
 .layout{
+  min-height:100vh;
+  /* Asegura que el layout ocupe al menos el alto de la ventana. */
 
-    min-height: 100vh;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
+  max-width:1150px;
+  /* Limita el ancho máximo para que en pantallas grandes no quede excesivamente estirado. */
 
-    grid-template-areas:
+  margin:0 auto;
+  /* Centra el layout en horizontal (0 arriba/abajo, auto izquierda/derecha). */
+
+  padding:16px;
+  /* Espacio interno para que el contenido no “pegue” al borde de la ventana. */
+
+  display:grid;
+  /* Activa CSS Grid en el contenedor. */
+
+  gap:16px;
+  /* Espacio ENTRE las áreas (entre header, nav, main, aside, footer). */
+
+  grid-template-columns: 1fr 320px;
+  /* Define 2 columnas:
+     - 1fr: columna flexible que ocupa el espacio restante (contenido principal)
+     - 320px: columna fija para el aside (lateral) */
+
+  grid-template-areas:
     "header header"
-    "nav nav"
-    "main aside"
-    "footer footer"
-    ;
-
+    "nav    nav"
+    "main   aside"
+    "footer footer";
+  /* Dibuja el “mapa” del layout:
+     - header ocupa las dos columnas
+     - nav ocupa las dos columnas
+     - main a la izquierda y aside a la derecha
+     - footer ocupa las dos columnas
+     Ventaja: muy legible y fácil de reordenar en responsive. */
 }
 
-.site-header{ grid-area: header;}
+/* Asignamos cada bloque HTML a un área del grid */
+.site-header{grid-area:header;}
+/* “Este elemento va en el área llamada header” */
 
-.site-nav{ grid-area: nav;}
+.site-nav{grid-area:nav;}
+/* “Este elemento va en el área llamada nav” */
 
-.site-main{ grid-area: main;
+.site-main{
+  grid-area:main;
+  /* Se coloca en el área “main” del layout. */
 
-    display: grid;
-    gap: 16px;
+  display:grid;
+  /* Dentro del main, usamos grid también para separar secciones verticalmente. */
 
+  gap:16px;
+  /* Separación entre secciones dentro del main. */
 }
 
-.site-aside{ grid-area: aside;}
+.site-aside{grid-area:aside;}
+/* Área lateral a la derecha en escritorio. */
 
-.site-footer{ grid-area: footer;}
+.site-footer{grid-area:footer;}
+/* Área inferior en toda la página. */
 
+
+/* Clase utilitaria opcional: una “tarjeta estándar” */
+.cardish{
+  background:var(--card);        /* Fondo blanco */
+  border-radius:var(--r);        /* Esquinas redondeadas */
+  box-shadow:var(--shadow);      /* Sombra suave */
+  padding:14px;                  /* Relleno interno */
+}
+
+
+/* =========================================================
+   HEADER (evita solapes del botón con el logo)
+   Clave:
+   - grid-template-columns: 1fr auto
+   -> bloque “brand” a la izquierda y botón CTA a la derecha
+   ========================================================= */
 .site-header{
+  background:var(--card);
+  border-radius:var(--r);
+  box-shadow:var(--shadow);
+  padding:14px;
 
-    background-color: var(--card);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 14px;
-    display: grid;
+  display:grid;
+  /* El header se organiza con grid (no flex).
+     Así controlamos columnas de forma muy estable. */
 
-    grid-template-columns: 1fr auto;
-    align-items: center;
+  grid-template-columns: 1fr auto;
+  /* 2 columnas:
+     - 1fr: lo que sea (logo + texto)
+     - auto: el botón solo ocupa lo que necesita
+     Esto evita que el botón “invada” el logo. */
 
-    gap: 12px;
+  align-items:center;
+  /* Alinea verticalmente el contenido dentro de cada fila del grid. */
 
+  gap:12px;
+  /* Separación entre el bloque de marca y el botón. */
 }
 
 .brand{
+  display:grid;
+  /* Usamos grid también dentro del bloque de marca
+     para alinear logo y texto en columnas. */
 
-    display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 12px;
-    align-items: center;
+  grid-template-columns: 200px 1fr;
+  /* 2 columnas:
+     - 200px reservados para el logo (la “caja del logo”)
+     - 1fr para el texto (nombre + eslogan)
+     IMPORTANTÍSIMO: si la columna del logo es 200px,
+     el logo no podrá ocupar más que eso. */
 
+  gap:12px;
+  /* Separación entre logo y texto. */
+
+  align-items:center;
+  /* Centra verticalmente el texto respecto al logo. */
+
+  min-width:0;
+  /* Truco importante en grids:
+     permite que el contenido de la columna 1fr pueda “encoger” y recortar.
+     Sin esto, a veces el texto fuerza el ancho y provoca desbordes. */
 }
 
 .brand__logo{
+  width:150px;
+  /* Ancho real de la imagen del logo dentro de su columna.
+     OJO: no puede ser mayor que la columna (200px en brand). */
 
-    width: 150px;
-    height: auto;
-    object-fit: contain;
+  height:auto;
+  /* Mantiene proporción del logo al cambiar el width. */
+
+  object-fit:contain;
+  /* Si en algún caso tuvieras height fija, contain evita recortes y deforma menos.
+     Con height:auto no es imprescindible, pero es “seguro”. */
+}
+
+.brand__name{
+  display:block;
+  /* Asegura que el nombre ocupe una línea completa (como bloque). */
+
+  font-size:1.15rem;
+  /* Tamaño del texto del nombre de marca. */
+
+  font-weight:900;
+  /* Negrita fuerte (peso 900). */
+}
+
+.brand__tagline{
+  display:block;
+  /* El eslogan en otra línea. */
+
+  color:var(--muted);
+  /* Color más suave para jerarquía visual (menos protagonista). */
+
+  font-size:.92rem;
+  /* Un poco más pequeño que el nombre. */
+}
+
+.cta{
+  text-decoration:none;
+  /* Quita el subrayado del enlace (parecerá botón). */
+
+  background:var(--accent);
+  /* Color de marca para llamar la atención. */
+
+  color:#fff;
+  /* Texto blanco para contraste. */
+
+  padding:10px 14px;
+  /* Tamaño interno del botón: más clicable. */
+
+  border-radius:999px;
+  /* Radio grande → forma “pastilla”. */
+
+  font-weight:900;
+  /* Tipografía contundente. */
+
+  white-space:nowrap;
+  /* Evita que “Ver carta” se parta en dos líneas
+     y se vea raro en pantallas pequeñas. */
+}
+
+
+/* =========================================================
+   NAV
+   Usamos FLEX aquí porque:
+   - es un “menú de botones” que puede saltar a otra línea (wrap)
+   - es ideal para items en fila
+   ========================================================= */
+.site-nav{
+  background:var(--card);
+  border-radius:var(--r);
+  box-shadow:var(--shadow);
+  padding:10px 12px;
+
+  display:flex;
+  /* Contenedor flex: los enlaces se colocan en fila automáticamente. */
+
+  gap:10px;
+  /* Espacio entre enlaces del menú. */
+
+  flex-wrap:wrap;
+  /* Si no caben, pasan a la siguiente línea.
+     Útil en tablet/móvil sin tener que hacer un menú hamburguesa. */
+}
+
+.site-nav a{
+  text-decoration:none;        /* Sin subrayado */
+  color:var(--text);           /* Color de texto principal */
+  background:rgba(51,194,107,.12);
+  /* Fondo verdoso transparente para “chips” de navegación. */
+
+  padding:8px 12px;            /* Tamaño clicable */
+  border-radius:999px;         /* Forma pastilla */
+  font-weight:800;             /* Seminegrita */
+}
+
+
+/* =========================================================
+   HERO (grid interno)
+   Dos columnas: texto (izq) + imagen (dcha)
+   ========================================================= */
+.hero{
+  background:var(--card);
+  border-radius:var(--r);
+  box-shadow:var(--shadow);
+  padding:14px;
+
+  display:grid;
+  /* Layout del hero en grid para controlar columnas. */
+
+  grid-template-columns: 1.2fr .8fr;
+  /* Columna izquierda más grande:
+     - 1.2fr para texto
+     - 0.8fr para la imagen
+     Proporción aproximada 60/40. */
+
+  gap:14px;
+  /* Separación entre texto e imagen. */
+
+  align-items:center;
+  /* Alinea verticalmente texto e imagen en el centro. */
+}
+
+.hero h1{
+  margin:0 0 8px 0;
+  /* Elimina margen superior del h1 y deja 8px abajo. */
+
+  font-size:clamp(1.6rem,2.6vw,2.2rem);
+  /* clamp(min, ideal, max):
+     - crece con el ancho de la pantalla (vw)
+     - sin pasarse del máximo
+     - sin bajar del mínimo */
+}
+
+.hero p{
+  margin:0 0 12px 0;           /* Espacio inferior */
+  color:var(--muted);           /* Texto secundario */
+}
+
+.hero__actions{
+  display:flex;
+  /* Botones en fila. */
+
+  gap:10px;
+  /* Separación entre botones. */
+
+  flex-wrap:wrap;
+  /* Si no caben, saltan de línea (mejor en móvil). */
+}
+
+.btn{
+  display:inline-block;
+  /* Permite padding y dimensiones como “botón”, aunque sea un <a>. */
+
+  text-decoration:none;
+  /* Quita subrayado si el botón es un enlace. */
+
+  border:0;
+  /* En caso de usar <button>, elimina borde por defecto. */
+
+  border-radius:12px;
+  /* Esquinas suaves modernas. */
+
+  padding:10px 14px;
+  /* Tamaño del botón. */
+
+  font-weight:900;
+  /* Texto contundente. */
+
+  cursor:pointer;
+  /* Mano al pasar por encima: “es clicable”. */
+}
+
+.btn--primary{
+  background:var(--accent);
+  color:#fff;
+}
+
+.btn--ghost{
+  background:rgba(31,41,55,.06);
+  /* Fondo muy suave: botón secundario. */
+
+  color:var(--text);
+}
+
+.hero__media img{
+  width:100%;
+  /* Que la imagen ocupe todo el ancho de su columna. */
+
+  height:240px;
+  /* Altura fija para que el hero tenga “presencia”.
+     (Si fuera auto, la altura dependería de la imagen.) */
+
+  object-fit:cover;
+  /* Recorta sin deformar para llenar la caja 100% (tipo “banner”). */
+
+  border-radius:14px;
+  /* Redondeo para que combine con el estilo de la web. */
+}
+
+
+/* =========================================================
+   SECCIONES (contenedores)
+   ========================================================= */
+.section{
+  background:var(--card);
+  border-radius:var(--r);
+  box-shadow:var(--shadow);
+  padding:14px;
+}
+
+.section__head h2{
+  margin:0 0 6px 0;
+  /* Controla espaciado del título. */
+}
+
+.section__head p{
+  margin:0;
+  color:var(--muted);
+  /* Texto explicativo en color secundario. */
+}
+
+
+/* =========================================================
+   2) AUTO-FIT: rejillas adaptativas
+   Aquí se explica “Grid avanzado” con repeat(auto-fit, minmax())
+   ========================================================= */
+.features, .products, .testimonials{
+  display:grid;
+  /* Activa grid para dibujar las columnas automáticas. */
+
+  gap:12px;
+  /* Espacio entre tarjetas. */
+
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  /* Clave:
+     - repeat(...) genera N columnas
+     - auto-fit calcula cuántas columnas CABEN en el ancho disponible
+     - minmax(220px, 1fr) significa:
+        * cada columna mide mínimo 220px
+        * y puede crecer hasta ocupar una fracción (1fr)
+     Resultado:
+     - en escritorio: varias columnas
+     - en móvil: 1 o 2 columnas sin media query estricta
+     - si “sobran” columnas, auto-fit colapsa pistas vacías y estira las existentes */
+
+  margin-top:12px;
+  /* Separación respecto al encabezado de la sección. */
+}
+
+.feature{
+  background:var(--card);
+  border-radius:var(--r);
+  box-shadow:var(--shadow);
+  padding:12px;
+}
+.feature h3{margin:0 0 6px 0}
+.feature p{margin:0;color:var(--muted)}
+
+.card{
+  background:#fff;
+  border-radius:var(--r);
+  box-shadow:var(--shadow);
+
+  overflow:hidden;
+  /* Evita que la imagen “se salga” de la tarjeta,
+     y hace que el redondeo se aplique visualmente. */
+}
+
+.card img{
+  width:100%;
+  /* Imagen al ancho completo de la tarjeta. */
+
+  height:150px;
+  /* Altura fija para que todas las tarjetas se vean uniformes. */
+
+  object-fit:cover;
+  /* Recorta para llenar la caja sin deformar. */
+}
+
+.card__body{padding:12px}
+.card__body h3{margin:0 0 6px 0}
+.card__body p{margin:0 0 8px 0;color:var(--muted)}
+.price{font-weight:900}
+
+
+/* Testimonios: grid interno (avatar + texto) */
+.quote{
+  background:#fff;
+  border-radius:var(--r);
+  box-shadow:var(--shadow);
+  padding:12px;
+
+  display:grid;
+  /* Mini-grid interno para avatar + contenido. */
+
+  grid-template-columns:44px 1fr;
+  /* Avatar fijo 44px + texto flexible. */
+
+  gap:10px;
+
+  align-items:start;
+  /* Alinea al inicio vertical (arriba). */
+}
+
+.quote__avatar{
+  width:44px;
+  height:44px;
+  border-radius:999px;         /* Círculo perfecto */
+
+  display:grid;
+  place-items:center;
+  /* place-items es atajo de:
+     - justify-items + align-items
+     centra la letra del avatar dentro del círculo. */
+
+  font-weight:900;
+  color:#fff;
+  background:var(--accent);
+}
+
+.quote__content p{margin:0 0 6px 0}
+.quote__meta{
+  color:var(--muted);
+  font-weight:800;
+  font-size:.92rem;
+}
+
+
+/* =========================================================
+   3) AUTO-FILL: galería
+   repeat(auto-fill, minmax())
+   ========================================================= */
+.gallery{
+  display:grid;
+  gap:10px;
+  margin-top:12px;
+
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  /* Diferencia respecto a auto-fit (idea didáctica):
+     - auto-fill “rellena” creando tantas columnas como caben,
+       incluso si no hay suficientes elementos (pistas pueden quedar “reservadas”).
+     - auto-fit colapsa pistas vacías y estira.
+     En una galería, auto-fill suele dar un mosaico más estable. */
+}
+
+.gallery img{
+  width:100%;
+  height:130px;
+  object-fit:cover;
+  border-radius:14px;
+  box-shadow:var(--shadow);
+}
+
+
+/* =========================================================
+   ASIDE (columna lateral)
+   ========================================================= */
+.site-aside{
+  display:grid;
+  /* Permite apilar cajas del aside una debajo de otra con gap. */
+
+  gap:12px;
+
+  align-content:start;
+  /* Empuja el conjunto hacia arriba y evita que se “estire” verticalmente
+     si sobra altura. */
+}
+
+.aside-box{
+  background:var(--card);
+  border-radius:var(--r);
+  box-shadow:var(--shadow);
+  padding:12px;
+}
+.aside-box h3{margin:0 0 6px 0}
+.aside-box p{margin:0;color:var(--muted)}
+
+
+/* =========================================================
+   FORMULARIO (alineación y tamaño consistente)
+   ========================================================= */
+.form{
+  margin-top:12px;
+
+  display:grid;
+  gap:12px;
+  /* Cada label/field queda en su “fila” con separación. */
+
+  max-width: 520px;
+  /* Evita que el formulario quede demasiado ancho y poco legible. */
+}
+
+.form label{
+  display:grid;
+  /* Coloca “texto del label” arriba y el input debajo. */
+
+  gap:6px;
+  /* Separación entre el texto y el campo. */
+
+  font-weight:900;
+}
+
+.form input,
+.form textarea{
+  width:100%;
+  /* Ocupa todo el ancho del formulario (alineado perfecto). */
+
+  font:inherit;
+  /* Hereda la fuente del body para que no cambie de tipografía. */
+
+  padding:10px 12px;
+  border-radius:12px;
+
+  border:1px solid rgba(31,41,55,.16);
+  /* Borde suave para indicar campo editable. */
+
+  background:#fff;
+}
+
+.form input:focus,
+.form textarea:focus{
+  outline:3px solid rgba(51,194,107,.22);
+  /* Outline visible al enfocar (mejora accesibilidad y UX). */
+
+  border-color: rgba(51,194,107,.35);
+  /* Ajusta el borde a tono con el color de marca. */
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer{
+  background:var(--card);
+  border-radius:var(--r);
+  box-shadow:var(--shadow);
+  padding:12px 14px;
+
+  color:var(--muted);
+  /* Texto general del footer en tono secundario. */
+}
+
+.site-footer p{
+  margin:0 0 6px 0;
+  color:var(--text);
+  /* La línea principal (copyright) destaca más. */
+
+  font-weight:900;
+}
+
+
+/* =========================================================
+   4) RESPONSIVE: cambio de áreas + ajustes
+   ========================================================= */
+
+/* Tablet / pantallas medianas:
+   - pasamos a 1 columna
+   - el aside baja debajo del main
+   - el hero pasa a 1 columna */
+@media (max-width: 980px){
+  .layout{
+    grid-template-columns: 1fr;
+    /* Ya no hay columna lateral fija, todo en una columna. */
+
+    grid-template-areas:
+      "header"
+      "nav"
+      "main"
+      "aside"
+      "footer";
+    /* Cambiamos el “mapa” de áreas:
+       es la GRAN ventaja de grid-template-areas:
+       reordenar layout sin tocar el HTML. */
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+    /* Texto arriba, imagen abajo (o viceversa según HTML).
+       Esto mejora legibilidad en pantallas estrechas. */
+  }
+
+  .hero__media img{height:210px;}
+  /* Reducimos altura del banner en pantallas medianas. */
+}
+
+
+/* Móvil:
+   - header en una sola columna, el CTA baja debajo del logo/texto
+   - rejillas con min-width más pequeño (caben mejor en móvil) */
+@media (max-width: 520px){
+  .site-header{
+    grid-template-columns: 1fr;
+    /* El botón ya no va a la derecha: baja debajo. */
+  }
+
+  .cta{
+    justify-self:start;
+    /* Alinea el botón a la izquierda dentro del grid (en móvil). */
+  }
+
+  .features, .products, .testimonials{
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    /* Reducimos el mínimo de columna:
+       en móvil, 220px puede ser demasiado.
+       Con 180px se adapta mejor y evita overflow. */
+  }
+
+  .gallery{
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    /* En galería, mínimo menor para que quepan más miniaturas si el ancho lo permite. */
+  }
 }

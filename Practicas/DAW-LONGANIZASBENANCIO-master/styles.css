@@ -122,6 +122,12 @@ body{
 
   /* Capa final: color sólido del fondo */
   var(--bg);
+
+  max-width: 1200px;
+
+  margin: 0px auto;
+
+
 }
 
 /* Links
@@ -424,9 +430,24 @@ a{ color: inherit; text-decoration: none; }
   margin: 18px 0;
 }
 
-/* Shine desactivado */
 .shine{
-  display: none; /* sin animación */
+  position: absolute;
+  inset: -40% -60%;/* quiero que este contenedor ocupe un 40% HACIA FUERA por arriba
+  y abajo y 60% hacia fuera del padre hacia dcha e izq, es decir, que sea mas grande que su padre*/
+  background: linear-gradient(
+    120deg,
+  transparent 40%,
+   rgba(255,255,255,0.2) 50%,
+  transparent 60%
+  ); 
+
+  transform: rotate(16deg);/* da mas efecto de luz */
+  /*quiero una linea que simule ser luz, quiero un transparente inicial y el color mas opaco en el centro
+  se juega con el color negro y se aplica transparencia*/
+pointer-events: none; /* para que esta capa sea transparente para el raton y podamos acceder al boton
+si no este contenedor lo cubriria*/
+
+animation: linealoca 3s ease-in-out infinite;
 }
 
 /* Emoji decorativo situado en esquina */
@@ -458,11 +479,16 @@ a{ color: inherit; text-decoration: none; }
 
   /* fondo sutil para diferenciarla del resto */
   background: rgba(255,255,255,.03);
+
+  overflow: hidden;
 }
 
 /* Track de la cinta: elementos en fila */
 .marquee-track{
   display: flex;
+
+ 
+  white-space: nowrap;
 
   /* separación entre mensajes */
   gap: 34px;
@@ -470,6 +496,8 @@ a{ color: inherit; text-decoration: none; }
   padding: 12px 0;
 
   color: var(--muted);
+
+  animation: marqueeMove 15s linear infinite;
 }
 
 
@@ -653,6 +681,96 @@ input, textarea{
 }
 
 
+/* 
+   CAPA CONTENEDORA DE LAS ESTRELLITAS
+   Esta capa cubre toda la pantalla y sirve como "lienzo"
+   donde se insertan dinámicamente las estrellas.
+*/
+.capa-estrellita {
+
+   /* 
+      position: fixed;
+      Fija el elemento respecto a la ventana del navegador.
+      No se mueve aunque el usuario haga scroll.
+      Ideal para efectos visuales que deben cubrir toda la pantalla.
+   */
+   position: fixed;
+
+   /*
+      inset: 0;
+      Es un atajo moderno equivalente a:
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      Esto hace que la capa ocupe toda la pantalla.
+   */
+   inset: 0;
+
+   /*
+      pointer-events: none;
+      Permite que los clics y movimientos del mouse
+      "atraviesen" esta capa.
+      Es fundamental para que no bloquee botones o enlaces debajo.
+   */
+   pointer-events: none;
+
+   /*
+      overflow: hidden;
+      Oculta cualquier estrellita que se salga
+      de los límites de la pantalla.
+      Evita barras de scroll accidentales.
+   */
+   overflow: hidden;
+
+   /*
+      z-index: 999;
+      Coloca esta capa por encima de la mayoría
+      de los elementos de la página.
+      Solo elementos con un z-index mayor podrían superarla.
+   */
+   z-index: 999;
+}
+
+
+
+/*
+   ESTILO DE CADA ESTRELLITA INDIVIDUAL
+   Estas se crean dinámicamente con JavaScript.
+*/
+.estrellita {
+
+   /*
+      position: absolute;
+      Permite posicionar cada estrella en coordenadas específicas
+      dentro del contenedor (.capa-estrellita).
+      Normalmente se colocan usando left/top vía JS.
+   */
+   position: absolute;
+
+   /*
+      font-size: 18px;
+      Define el tamaño del emoji.
+      Al ser texto (✨), se comporta como una fuente.
+      Puedes hacerlo responsive usando rem o clamp().
+   */
+   font-size: 18px;
+
+   /*
+      will-change: transform, opacity;
+      Le dice al navegador:
+      "Este elemento probablemente cambiará su transform o su opacidad".
+      
+      Esto permite optimizaciones internas (GPU acceleration).
+      Mejora el rendimiento en animaciones.
+      
+      No debe abusarse de esta propiedad,
+      pero en efectos dinámicos como este es apropiada.
+   */
+   will-change: transform, opacity;
+
+}
+
 
 /* =========================
    ANIMACIONES (@keyframes)
@@ -716,7 +834,19 @@ input, textarea{
     100% { transform: translateY(0px);  opacity: 1; }
 }
 
+@keyframes marqueeMove{
 
+   from { transform: translateX(0);}
+   to {transform: translateX(-50%);}
+
+}
+
+@keyframes linealoca{
+  0%{transform: translateX(-40%) rotate(12deg); opacity: 0;}
+  30%{opacity: 1;}
+  60%{opacity: 1;}
+  100%{transform: translateX(40%) rotate(12deg); opacity: 0;}
+}
 
 /* =========================
    RESPONSIVE
