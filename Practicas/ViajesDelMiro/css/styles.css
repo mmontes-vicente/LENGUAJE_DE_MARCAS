@@ -80,7 +80,7 @@ ul    { list-style: none; }
 }
 
 /* ============================================================
-   LOADER — CSS puro, desaparece solo
+   LOADER
    ============================================================ */
 .loader {
   position: fixed; inset: 0; z-index: 9999;
@@ -1015,7 +1015,7 @@ ul    { list-style: none; }
   justify-content: center;
   box-shadow: 0 6px 24px rgba(232,85,62,.45);
   text-decoration: none;
-  /* Aparece después de hacer scroll — CSS puro */
+  /* Aparece después de hacer scroll */
   opacity: 0;
   pointer-events: none;
   transition: background .2s, transform .2s, opacity .4s ease;
