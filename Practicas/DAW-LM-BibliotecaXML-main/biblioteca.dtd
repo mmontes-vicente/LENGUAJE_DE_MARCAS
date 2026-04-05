@@ -1,0 +1,115 @@
+<!-- =========================
+     ENTIDADES
+     ========================= -->
+<!ENTITY empresa "TechCorp">
+<!ENTITY saltolinea "&#10;">  <!-- salto de línea -->
+
+<!-- =========================
+     ELEMENTO RAÍZ
+     ========================= -->
+<!ELEMENT biblioteca (metadatos, autores, usuarios, catalogo, prestamos)>
+<!ATTLIST biblioteca
+  id       ID     #REQUIRED
+  version  CDATA  #IMPLIED
+>
+
+<!-- =========================
+     METADATOS
+     ========================= -->
+<!ELEMENT metadatos (nombre, direccion, contacto)>
+<!ELEMENT nombre (#PCDATA)>
+
+<!ELEMENT direccion (calle, numero, ciudad, pais, cp)>
+<!ELEMENT calle (#PCDATA)>
+<!ELEMENT numero (#PCDATA)>
+<!ELEMENT ciudad (#PCDATA)>
+<!ELEMENT pais (#PCDATA)>
+<!ELEMENT cp (#PCDATA)>
+
+<!ELEMENT contacto (email, telefono?, web?)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT telefono (#PCDATA)>
+<!-- prefijo tiene valor por defecto "+34" -->
+<!ATTLIST telefono
+  prefijo CDATA "+34"
+>
+<!ELEMENT web (#PCDATA)>
+
+<!-- =========================
+     AUTORES
+     ========================= -->
+<!ELEMENT autores (autor+)>
+<!ELEMENT autor (nombre, apellido, nacimiento, fallecimiento?)>
+<!ATTLIST autor
+  id           ID     #REQUIRED
+  nacionalidad CDATA  #IMPLIED
+>
+<!ELEMENT apellido (#PCDATA)>
+<!ELEMENT nacimiento (#PCDATA)>
+<!ELEMENT fallecimiento (#PCDATA)>
+
+<!-- =========================
+     USUARIOS
+     ========================= -->
+<!ELEMENT usuarios (usuario+)>
+<!ELEMENT usuario (nombre, email, telefono?)>
+<!-- rol es una enumeración y por defecto vale "lector" -->
+<!ATTLIST usuario
+  id     ID             #REQUIRED
+  rol    (admin|lector) "lector"
+  activo (si|no)        "si"
+>
+
+<!-- =========================
+     CATÁLOGO Y LIBROS
+     ========================= -->
+<!ELEMENT catalogo (libro+)>
+
+<!ELEMENT libro (titulo, autorRef, editorial, anio, precio, palabrasClave?, sinopsis?)>
+<!ATTLIST libro
+  id      ID                         #REQUIRED
+  isbn    CDATA                      #REQUIRED
+  genero  (novela|distopia|ensayo|poesia|tecnico)  #REQUIRED
+  idioma  (es|en|fr|pt|de|it)         "es"
+  estado  (disponible|prestado|baja)  "disponible"
+>
+
+<!ELEMENT titulo (#PCDATA)>
+<!ELEMENT editorial (#PCDATA)>
+<!ELEMENT anio (#PCDATA)>
+
+<!-- precio con atributo obligatorio moneda y valor textual -->
+<!ELEMENT precio (#PCDATA)>
+<!ATTLIST precio
+  moneda (EUR|USD|GBP) "EUR"
+>
+
+<!-- autorRef vacío (EMPTY) con atributo ref que apunta a ID de autor -->
+<!ELEMENT autorRef EMPTY>
+<!ATTLIST autorRef
+  ref IDREF #REQUIRED
+>
+
+<!ELEMENT palabrasClave (tag*)>
+<!ELEMENT tag (#PCDATA)>
+
+<!-- sinopsis como texto (podría contener entidades como &saltolinea;) -->
+<!ELEMENT sinopsis (#PCDATA)>
+
+<!-- =========================
+     PRÉSTAMOS
+     ========================= -->
+<!ELEMENT prestamos (prestamo*)>
+
+<!ELEMENT prestamo (fechaInicio, fechaFin, fechaDevolucion?, notas?)>
+<!ATTLIST prestamo
+  id         ID                      #REQUIRED
+  usuarioRef IDREF                   #REQUIRED
+  libroRef   IDREF                   #REQUIRED
+  estado     (abierto|cerrado)       #REQUIRED
+>
+
+<!ELEMENT fechaInicio (#PCDATA)>
+<!ELEMENT fechaFin (#PCDATA)>
+<!ELEMENT fechaDevolucion (#PCDATA)>
+<!ELEMENT notas (#PCDATA)>

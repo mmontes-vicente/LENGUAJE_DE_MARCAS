@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<biblioteca
+  id="biblio-01"
+  version="1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="biblioteca.xsd">
+
+  <metadatos>
+    <nombre>TechCorp - Sede Central</nombre>
+    <direccion>
+      <calle>Gran Vía</calle>
+      <numero>28</numero>
+      <ciudad>Madrid</ciudad>
+      <pais>ES</pais>
+      <cp>28013</cp>
+    </direccion>
+    <contacto>
+      <email>info@techcorp.example</email>
+      <telefono prefijo="+34">910000000</telefono>
+      <web>https://techcorp.example/biblioteca</web>
+    </contacto>
+  </metadatos>
+
+  <autores>
+    <autor id="a1" nacionalidad="ES">
+      <nombre>Miguel</nombre>
+      <apellido>Cervantes</apellido>
+      <nacimiento>1547</nacimiento>
+      <fallecimiento>1616</fallecimiento>
+    </autor>
+
+    <autor id="a2" nacionalidad="GB">
+      <nombre>George</nombre>
+      <apellido>Orwell</apellido>
+      <nacimiento>1903</nacimiento>
+      <fallecimiento>1950</fallecimiento>
+    </autor>
+
+    <autor id="a3" nacionalidad="CL">
+      <nombre>Isabel</nombre>
+      <apellido>Allende</apellido>
+      <nacimiento>1942</nacimiento>
+    </autor>
+  </autores>
+
+  <usuarios>
+    <usuario id="u1" rol="admin" activo="si">
+      <nombre>Ana</nombre>
+      <email>ana@correo.example</email>
+    </usuario>
+
+    <usuario id="u2" rol="lector" activo="si">
+      <nombre>Carlos</nombre>
+      <email>carlos@correo.example</email>
+      <telefono prefijo="+34">620000000</telefono>
+    </usuario>
+
+    <usuario id="u3" rol="lector" activo="no">
+      <nombre>Marta</nombre>
+      <email>marta@correo.example</email>
+    </usuario>
+  </usuarios>
+
+  <catalogo>
+    <libro id="l1" isbn="9780000000001" genero="novela" idioma="es" estado="disponible">
+      <titulo>Don Quijote de la Mancha</titulo>
+      <autorRef ref="a1"/>
+      <editorial>Editorial Clásicos</editorial>
+      <anio>1605</anio>
+      <precio moneda="EUR">19.95</precio>
+      <palabrasClave>
+        <tag>clásico</tag>
+        <tag>aventura</tag>
+        <tag>satira</tag>
+      </palabrasClave>
+      <sinopsis>Obra fundamental de la literatura. Famosa por su influencia cultural.</sinopsis>
+    </libro>
+
+    <libro id="l2" isbn="9780000000002" genero="distopia" idioma="en" estado="prestado">
+      <titulo>1984</titulo>
+      <autorRef ref="a2"/>
+      <editorial>Secker &amp; Warburg</editorial>
+      <anio>1949</anio>
+      <precio moneda="EUR">14.50</precio>
+      <palabrasClave>
+        <tag>distopía</tag>
+        <tag>política</tag>
+      </palabrasClave>
+      <sinopsis>Una visión crítica del totalitarismo.</sinopsis>
+    </libro>
+
+    <libro id="l3" isbn="9780000000003" genero="novela" idioma="es" estado="disponible">
+      <titulo>La casa de los espíritus</titulo>
+      <autorRef ref="a3"/>
+      <editorial>Plaza &amp; Janés</editorial>
+      <anio>1982</anio>
+      <precio moneda="EUR">17.00</precio>
+      <palabrasClave>
+        <tag>realismo mágico</tag>
+        <tag>familia</tag>
+      </palabrasClave>
+      <sinopsis>Historia familiar con tintes fantásticos.</sinopsis>
+    </libro>
+  </catalogo>
+
+  <prestamos>
+    <prestamo id="p1" usuarioRef="u2" libroRef="l2" estado="abierto">
+      <fechaInicio>2026-02-20</fechaInicio>
+      <fechaFin>2026-03-20</fechaFin>
+      <notas>Entregado en buen estado.</notas>
+    </prestamo>
+
+    <prestamo id="p2" usuarioRef="u1" libroRef="l1" estado="cerrado">
+      <fechaInicio>2026-01-10</fechaInicio>
+      <fechaFin>2026-01-25</fechaFin>
+      <fechaDevolucion>2026-01-24</fechaDevolucion>
+    </prestamo>
+  </prestamos>
+
+</biblioteca>

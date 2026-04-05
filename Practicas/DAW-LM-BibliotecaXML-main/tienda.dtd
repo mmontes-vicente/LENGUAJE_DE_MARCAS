@@ -1,0 +1,21 @@
+<!ELEMENT tienda (productos, pedidos)>
+
+<!ELEMENT productos (producto+)>
+
+<!ELEMENT producto (nombre, precio)>
+<!ATTLIST producto 
+idProd ID #REQUIRED
+>
+
+<!ELEMENT pedidos (pedido+)>
+
+<!ELEMENT pedido (productoRef, cantidad)>
+<!ATTLIST pedido 
+idPedido ID #REQUIRED
+>
+
+<!ELEMENT nombre (#PCDATA)>
+<!ELEMENT precio (#PCDATA)>
+
+<!ELEMENT productoRef (#PCDATA)>
+<!ELEMENT cantidad (#PCDATA)>

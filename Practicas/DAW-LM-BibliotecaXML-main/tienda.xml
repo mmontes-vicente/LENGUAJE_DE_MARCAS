@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tienda SYSTEM "tienda.dtd"[
+]>
+
+<tienda>
+    <productos>
+        <producto idProd="p1">
+            <nombre>Teclado</nombre>
+            <precio>10</precio>
+        </producto>
+
+        <producto idProd="p2">
+            <nombre>Teclado</nombre>
+            <precio>10</precio>
+        </producto>
+
+    </productos>
+
+    <pedidos>
+        <pedido idPedido="ped1">
+            <productoRef>p2</productoRef>
+            <cantidad>2</cantidad>
+        </pedido>
+
+    </pedidos>
+
+</tienda>

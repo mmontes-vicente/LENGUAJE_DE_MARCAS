@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="unqualified"
+  attributeFormDefault="unqualified">
+
+  <xs:simpleType name="tipoNombre">
+    <xs:restriction base="xs:string">
+        <xs:minLength value="2"></xs:minLength>
+        <xs:maxLength value="40"></xs:maxLength>
+        <xs:pattern value="[A-Za-z ]"></xs:pattern>
+    </xs:restriction>
+  </xs:simpleType>  
+
+  <xs:simpleType name="tipoPreco">
+    <xs:restriction base="xs:decimal">
+        <xs:minInclusive value="0"></xs:minInclusive>
+    </xs:restriction>
+  </xs:simpleType>  
+
+
+<xs:element name="tienda">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="producto" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="nombre" type="tipoNombre"></xs:element>
+                         <xs:element name="precio" type="xs:decimal"></xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="idProd" type="xs:string" use="required"></xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
+
+
+</xs:schema>

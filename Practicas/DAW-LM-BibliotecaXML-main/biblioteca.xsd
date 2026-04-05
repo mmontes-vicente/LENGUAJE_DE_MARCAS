@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  elementFormDefault="unqualified"
+  attributeFormDefault="unqualified">
+
+  <!-- ==========
+       TIPOS SIMPLES (restricciones)
+       ========== -->
+
+  <!-- País ISO simple (2 letras mayúsculas) -->
+  <xs:simpleType name="PaisType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{2}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Código postal español simple (5 dígitos) -->
+  <xs:simpleType name="CPType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d{5}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Año como entero razonable (lo dejamos amplio) -->
+  <xs:simpleType name="AnioType">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="3000"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Prefijo telefónico tipo +34 -->
+  <xs:simpleType name="PrefijoTelefonoType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\+\d{1,4}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Enumeraciones -->
+  <xs:simpleType name="RolType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="admin"/>
+      <xs:enumeration value="lector"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="SiNoType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="si"/>
+      <xs:enumeration value="no"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="GeneroType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="novela"/>
+      <xs:enumeration value="distopia"/>
+      <xs:enumeration value="ensayo"/>
+      <xs:enumeration value="poesia"/>
+      <xs:enumeration value="tecnico"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="IdiomaType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="es"/>
+      <xs:enumeration value="en"/>
+      <xs:enumeration value="fr"/>
+      <xs:enumeration value="pt"/>
+      <xs:enumeration value="de"/>
+      <xs:enumeration value="it"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="EstadoLibroType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="disponible"/>
+      <xs:enumeration value="prestado"/>
+      <xs:enumeration value="baja"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="MonedaType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="EUR"/>
+      <xs:enumeration value="USD"/>
+      <xs:enumeration value="GBP"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="EstadoPrestamoType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="abierto"/>
+      <xs:enumeration value="cerrado"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- ISBN: patrón básico (no perfecto, pero útil) -->
+  <xs:simpleType name="ISBNType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d{13}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- ==========
+       TIPOS COMPLEJOS REUTILIZABLES
+       ========== -->
+
+  <xs:complexType name="TelefonoType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="prefijo" type="PrefijoTelefonoType" default="+34"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="PrecioType">
+    <xs:simpleContent>
+      <xs:extension base="xs:decimal">
+        <xs:attribute name="moneda" type="MonedaType" default="EUR"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="DireccionType">
+    <xs:sequence>
+      <xs:element name="calle" type="xs:string"/>
+      <xs:element name="numero" type="xs:string"/>
+      <xs:element name="ciudad" type="xs:string"/>
+      <xs:element name="pais" type="PaisType"/>
+      <xs:element name="cp" type="CPType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ContactoType">
+    <xs:sequence>
+      <xs:element name="email" type="xs:string"/>
+      <xs:element name="telefono" type="TelefonoType" minOccurs="0"/>
+      <xs:element name="web" type="xs:anyURI" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="AutorType">
+    <xs:sequence>
+      <xs:element name="nombre" type="xs:string"/>
+      <xs:element name="apellido" type="xs:string"/>
+      <xs:element name="nacimiento" type="AnioType"/>
+      <xs:element name="fallecimiento" type="AnioType" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID" use="required"/>
+    <xs:attribute name="nacionalidad" type="PaisType" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="UsuarioType">
+    <xs:sequence>
+      <xs:element name="nombre" type="xs:string"/>
+      <xs:element name="email" type="xs:string"/>
+      <xs:element name="telefono" type="TelefonoType" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:ID" use="required"/>
+    <xs:attribute name="rol" type="RolType" default="lector"/>
+    <xs:attribute name="activo" type="SiNoType" default="si"/>
+  </xs:complexType>
+
+  <xs:complexType name="AutorRefType">
+    <xs:attribute name="ref" type="xs:IDREF" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="PalabrasClaveType">
+    <xs:sequence>
+      <xs:element name="tag" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="LibroType">
+    <xs:sequence>
+      <xs:element name="titulo" type="xs:string"/>
+      <xs:element name="autorRef" type="AutorRefType"/>
+      <xs:element name="editorial" type="xs:string"/>
+      <xs:element name="anio" type="AnioType"/>
+      <xs:element name="precio" type="PrecioType"/>
+      <xs:element name="palabrasClave" type="PalabrasClaveType" minOccurs="0"/>
+      <xs:element name="sinopsis" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+
+    <xs:attribute name="id" type="xs:ID" use="required"/>
+    <xs:attribute name="isbn" type="ISBNType" use="required"/>
+    <xs:attribute name="genero" type="GeneroType" use="required"/>
+    <xs:attribute name="idioma" type="IdiomaType" default="es"/>
+    <xs:attribute name="estado" type="EstadoLibroType" default="disponible"/>
+  </xs:complexType>
+
+  <xs:complexType name="PrestamoType">
+    <xs:sequence>
+      <xs:element name="fechaInicio" type="xs:date"/>
+      <xs:element name="fechaFin" type="xs:date"/>
+      <xs:element name="fechaDevolucion" type="xs:date" minOccurs="0"/>
+      <xs:element name="notas" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+
+    <xs:attribute name="id" type="xs:ID" use="required"/>
+    <xs:attribute name="usuarioRef" type="xs:IDREF" use="required"/>
+    <xs:attribute name="libroRef" type="xs:IDREF" use="required"/>
+    <xs:attribute name="estado" type="EstadoPrestamoType" use="required"/>
+  </xs:complexType>
+
+  <!-- ==========
+       ELEMENTO RAÍZ + estructura global
+       ========== -->
+
+  <xs:element name="biblioteca">
+    <xs:complexType>
+      <xs:sequence>
+
+        <xs:element name="metadatos">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="nombre" type="xs:string"/>
+              <xs:element name="direccion" type="DireccionType"/>
+              <xs:element name="contacto" type="ContactoType"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="autores">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="autor" type="AutorType" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="usuarios">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="usuario" type="UsuarioType" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="catalogo">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="libro" type="LibroType" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="prestamos">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="prestamo" type="PrestamoType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+      </xs:sequence>
+
+      <xs:attribute name="id" type="xs:ID" use="required"/>
+      <xs:attribute name="version" type="xs:string" use="optional"/>
+    </xs:complexType>
+
+    <!-- Claves: aseguran unicidad de IDs (xs:ID ya es único en el doc, pero esto sirve de ejemplo)
+         y además podemos exigir "al menos existan" colecciones coherentes.
+         Nota: NO podemos tipar IDREF por 'tipo destino' en XSD 1.0.
+    -->
+    <xs:key name="autorIdKey">
+      <xs:selector xpath="autores/autor"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:key name="usuarioIdKey">
+      <xs:selector xpath="usuarios/usuario"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <xs:key name="libroIdKey">
+      <xs:selector xpath="catalogo/libro"/>
+      <xs:field xpath="@id"/>
+    </xs:key>
+
+    <!-- keyref: exige que IDREF apunte a algún ID existente dentro del conjunto -->
+    <xs:keyref name="autorRefDebeExistir" refer="autorIdKey">
+      <xs:selector xpath="catalogo/libro/autorRef"/>
+      <xs:field xpath="@ref"/>
+    </xs:keyref>
+
+    <xs:keyref name="prestamoUsuarioDebeExistir" refer="usuarioIdKey">
+      <xs:selector xpath="prestamos/prestamo"/>
+      <xs:field xpath="@usuarioRef"/>
+    </xs:keyref>
+
+    <xs:keyref name="prestamoLibroDebeExistir" refer="libroIdKey">
+      <xs:selector xpath="prestamos/prestamo"/>
+      <xs:field xpath="@libroRef"/>
+    </xs:keyref>
+
+  </xs:element>
+
+</xs:schema>
