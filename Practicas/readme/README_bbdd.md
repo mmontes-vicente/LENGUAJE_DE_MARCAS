@@ -1,4 +1,4 @@
-# 🗄 Bases de Datos — Módulo 0484
+# Bases de Datos — Módulo 0484
 
 > NexHub Coworking · Diseño y construcción de la base de datos relacional
 
@@ -128,7 +128,7 @@ servicio (
 )
 ```
 
-### `socio_servicio` ← tabla intermedia N:M
+### `socio_servicio` <-- tabla intermedia N:M
 
 ```sql
 socio_servicio (

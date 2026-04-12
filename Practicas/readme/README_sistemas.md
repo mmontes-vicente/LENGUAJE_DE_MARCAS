@@ -1,4 +1,4 @@
-# 🖥 Sistemas Informáticos — Módulo 0483
+# Sistemas Informáticos — Módulo 0483
 
 > NexHub Coworking · Informe técnico del entorno de ejecución
 

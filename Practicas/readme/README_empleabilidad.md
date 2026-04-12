@@ -1,4 +1,4 @@
-# 👤 Empleabilidad — Módulo 1709
+# Empleabilidad — Módulo 1709
 
 > NexHub Coworking · Itinerario Personal para la Empleabilidad I
 
@@ -26,12 +26,12 @@ en capas y a construir interfaces que se ven bien en cualquier dispositivo.
 
 ## Presentación del proyecto
 
-### ¿Qué es NexHub?
+### Qué es NexHub?
 
 Plataforma de gestión para un coworking tecnológico ficticio ubicado en Madrid.
 Pensada como si fuera un encargo real de un cliente que necesita digitalizar su negocio.
 
-### ¿Qué problema resuelve?
+### Qué problema resuelve?
 
 El administrador del coworking necesitaba una herramienta para gestionar:
 
@@ -40,7 +40,7 @@ El administrador del coworking necesitaba una herramienta para gestionar:
 - Los pagos asociados a cada reserva
 - Los servicios adicionales que contratan los socios
 
-### ¿Cómo está construido?
+### Cómo está construido?
 
 El proyecto tiene tres capas que trabajan juntas:
 
@@ -50,7 +50,7 @@ App Java           →  gestión interna del administrador
 Base de datos      →  almacena y relaciona toda la información
 ```
 
-### ¿Qué demuestra?
+### Qué demuestra?
 
 Que sé diseñar un sistema desde cero: modelar los datos en E-R,
 traducirlo a SQL, conectarlo con Java mediante JDBC, y construir

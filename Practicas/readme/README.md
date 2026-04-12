@@ -1,11 +1,11 @@
-# ⬡ NexHub Coworking
+# NexHub Coworking
 
 > Plataforma de gestión para un coworking tecnológico en Madrid.
 > Proyecto Intermodular · 1º DAW · Prometeo by The Power · 2025
 
 ---
 
-## ¿Qué es este proyecto?
+## Qué es este proyecto?
 
 NexHub integra tres capas técnicas trabajadas durante el curso en un mismo sistema coherente:
 
@@ -47,54 +47,54 @@ El objetivo es demostrar cómo se conectan todos los módulos de 1º DAW en un p
 
 ```
 nexhub-project/
-│
-├── web/                          # Módulo Lenguajes de Marcas
-│   ├── index.html
-│   ├── espacios.html
-│   ├── tarifas.html
-│   ├── comunidad.html
-│   ├── contacto.html
-│   └── assets/
-│       ├── css/style.css
-│       └── js/main.js
-│
-├── src/                          # Módulo Programación + MPO
-│   ├── Main.java
-│   ├── db/Conexion.java
-│   ├── model/
-│   │   ├── Persona.java          ← abstract
-│   │   ├── Socio.java
-│   │   ├── Empleado.java
-│   │   ├── Espacio.java
-│   │   └── Reserva.java
-│   ├── service/
-│   │   ├── SocioService.java
-│   │   ├── EspacioService.java
-│   │   ├── ReservaService.java
-│   │   └── EmpleadoService.java
-│   ├── controller/
-│   │   └── MenuController.java
-│   └── utils/
-│       ├── CrudService.java      ← interface genérica
-│       └── Validador.java
-│
-├── sql/                          # Módulo Bases de Datos
-│   ├── 01_crear_tablas.sql
-│   ├── 02_insertar_datos.sql
-│   └── 03_consultas.sql
-│
-├── docs/
-│   ├── diagramas/
-│   │   ├── diagrama_ER.drawio
-│   │   └── modelo_relacional.drawio
-│   ├── sistemas/
-│   │   └── informe_tecnico.md
-│   └── empleabilidad/
-│       ├── perfil_profesional.md
-│       ├── presentacion_proyecto.md
-│       └── reflexion_final.md
-│
-└── README.md
+
+- web/                          # Módulo Lenguajes de Marcas
+    - index.html
+    - espacios.html
+    - tarifas.html
+    - comunidad.html
+    - contacto.html
+    - assets/
+        - css/style.css
+        - js/main.js
+
+- src/                          # Módulo Programación + MPO
+    - Main.java
+    - db/Conexion.java
+    - model/
+        - Persona.java          <-- abstract
+        - Socio.java
+        - Empleado.java
+        - Espacio.java
+        - Reserva.java
+    - service/
+        - SocioService.java
+        - EspacioService.java
+        - ReservaService.java
+        - EmpleadoService.java
+    - controller/
+        - MenuController.java
+    - utils/
+        - CrudService.java      <-- interface genérica
+        - Validador.java
+
+- sql/                          # Módulo Bases de Datos
+    - 01_crear_tablas.sql
+    - 02_insertar_datos.sql
+    - 03_consultas.sql
+
+- docs/
+    - diagramas/
+        - diagrama_ER.drawio
+        - modelo_relacional.drawio
+    - sistemas/
+        - informe_tecnico.md
+    - empleabilidad/
+        - perfil_profesional.md
+        - presentacion_proyecto.md
+        - reflexion_final.md
+
+- README.md
 ```
 
 ---

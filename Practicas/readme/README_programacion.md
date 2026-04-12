@@ -1,4 +1,4 @@
-# ☕ Programación — Módulo 0485 + MPO
+# Programación — Módulo 0485 + MPO
 
 > NexHub Coworking · Aplicación Java con JDBC y diseño orientado a objetos
 
@@ -15,30 +15,30 @@ socios, espacios, reservas, pagos y empleados conectándose directamente a la ba
 
 ```
 src/
-├── Main.java                      ← Punto de entrada
-│
-├── controller/
-│   └── MenuController.java        ← Menús de consola · navegación · input
-│
-├── service/
-│   ├── SocioService.java          ← CRUD socios · lógica de negocio
-│   ├── EspacioService.java        ← CRUD espacios · disponibilidad
-│   ├── ReservaService.java        ← CRUD reservas · JOIN · ingresos
-│   └── EmpleadoService.java       ← CRUD empleados (módulo extra MPO)
-│
-├── model/
-│   ├── Persona.java               ← abstract · base de Socio y Empleado
-│   ├── Socio.java                 ← extends Persona
-│   ├── Empleado.java              ← extends Persona
-│   ├── Espacio.java
-│   └── Reserva.java               ← lógica: calcularPrecio(), esValida()
-│
-├── utils/
-│   ├── CrudService.java           ← interface genérica <T, ID>
-│   └── Validador.java             ← validaciones centralizadas (static)
-│
-└── db/
-    └── Conexion.java              ← Singleton JDBC → MySQL
+- Main.java                      <-- Punto de entrada
+
+- controller/
+    - MenuController.java        <-- Menús de consola · navegación · input
+
+- service/
+    - SocioService.java          <-- CRUD socios · lógica de negocio
+    - EspacioService.java        <-- CRUD espacios · disponibilidad
+    - ReservaService.java        <-- CRUD reservas · JOIN · ingresos
+    - EmpleadoService.java       <-- CRUD empleados (módulo extra MPO)
+
+- model/
+    - Persona.java               <-- abstract · base de Socio y Empleado
+    - Socio.java                 <-- extends Persona
+    - Empleado.java              <-- extends Persona
+    - Espacio.java
+    - Reserva.java               <-- lógica: calcularPrecio(), esValida()
+
+- utils/
+    - CrudService.java           <-- interface genérica <T, ID>
+    - Validador.java             <-- validaciones centralizadas (static)
+
+- db/
+    - Conexion.java              <-- Singleton JDBC → MySQL
 ```
 
 ---

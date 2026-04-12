@@ -1,4 +1,4 @@
-# 🌐 Lenguajes de Marcas — Módulo 0373
+# Lenguajes de Marcas — Módulo 0373
 
 > NexHub Coworking · Portal web corporativo · HTML5 + CSS3 + JavaScript
 
@@ -27,16 +27,16 @@ Sin frameworks CSS externos — todo el diseño está construido con variables C
 
 ```
 web/
-├── index.html
-├── espacios.html
-├── tarifas.html
-├── comunidad.html
-├── contacto.html
-└── assets/
-    ├── css/
-    │   └── style.css        ← hoja de estilos única con variables
-    └── js/
-        └── main.js          ← menú responsive + validación formulario
+- index.html
+- espacios.html
+- tarifas.html
+- comunidad.html
+- contacto.html
+- assets/
+    - css/
+        - style.css        <-- hoja de estilos única con variables
+    - js/
+        - main.js          <-- menú responsive + validación formulario
 ```
 
 ---
