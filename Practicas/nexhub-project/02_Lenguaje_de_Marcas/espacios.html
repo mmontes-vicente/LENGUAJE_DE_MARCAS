@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+  <title>Espacios — NexHub Coworking</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo">
+        <span class="logo__icon">&#x2B21;</span>
+        <span class="logo__text">Nex<strong>Hub</strong></span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="index.html" class="nav__link">Inicio</a>
+        <a href="espacios.html" class="nav__link nav__link--active">Espacios</a>
+        <a href="tarifas.html" class="nav__link">Tarifas</a>
+        <a href="comunidad.html" class="nav__link">Comunidad</a>
+        <a href="contacto.html" class="nav__link">Contacto</a>
+      </nav>
+      <button class="btn btn--primary btn--sm" onclick="location.href='contacto.html'">Reservar visita</button>
+      <button class="nav__toggle" id="navToggle" aria-label="Menu">&#9776;</button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Nuestros espacios</h1>
+      <p>Cada rincon de NexHub esta pensado para que puedas trabajar como necesitas: en equipo, en solitario, en silencio o con energia.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <h2 class="section__title">Open Space</h2>
+      <div class="spaces__grid">
+        <div class="space-card">
+          <img class="space-card__img"
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
+            alt="Open Space A — zona de trabajo abierta" loading="lazy" />
+          <div class="space-card__body">
+            <h3>Open Space A</h3>
+            <span class="badge badge--green">50 puestos</span>
+            <p>Zona de trabajo abierta con luz natural, escritorios amplios y la energia de una comunidad activa.</p>
+            <ul class="space-card__specs">
+              <li>WiFi 6 + ethernet en cada puesto</li>
+              <li>Monitores 4K disponibles</li>
+              <li>Acceso a cocina y lounge</li>
+              <li>5 € / hora · 25 € / dia · 150 € / mes</li>
+            </ul>
+          </div>
+        </div>
+        <div class="space-card">
+          <img class="space-card__img"
+            src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800&q=80"
+            alt="Open Space B — zona silenciosa" loading="lazy" />
+          <div class="space-card__body">
+            <h3>Open Space B — Zona Silenciosa</h3>
+            <span class="badge badge--blue">30 puestos</span>
+            <p>Area de trabajo en silencio para maxima concentracion. Politica de no llamadas, ideal para trabajo profundo.</p>
+            <ul class="space-card__specs">
+              <li>Politica de silencio</li>
+              <li>Monitores 4K disponibles</li>
+              <li>Taquilla disponible con plan Dedicated</li>
+              <li>5 € / hora · 25 € / dia · 150 € / mes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section__title" style="margin-top:3rem">Oficinas Privadas</h2>
+      <div class="spaces__grid">
+        <div class="space-card">
+          <img class="space-card__img"
+            src="https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=800&q=80"
+            alt="Oficina privada pequeña para equipo" loading="lazy" />
+          <div class="space-card__body">
+            <h3>Oficina Startup S</h3>
+            <span class="badge badge--purple">Hasta 4 personas</span>
+            <p>Oficina privada con cerradura propia, perfecta para equipos pequenos que necesitan privacidad.</p>
+            <ul class="space-card__specs">
+              <li>Acceso exclusivo con llave NFC</li>
+              <li>Almacenamiento privado incluido</li>
+              <li>Rotulacion con tu marca (opcional)</li>
+              <li>600 € / mes · 20h sala incluidas</li>
+            </ul>
+          </div>
+        </div>
+        <div class="space-card">
+          <img class="space-card__img"
+            src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=800&q=80"
+            alt="Oficina privada mediana para equipo" loading="lazy" />
+          <div class="space-card__body">
+            <h3>Oficina Startup M</h3>
+            <span class="badge badge--purple">Hasta 6 personas</span>
+            <p>Oficina mediana ideal para startups en crecimiento. Con espacio suficiente para reuniones internas.</p>
+            <ul class="space-card__specs">
+              <li>Acceso exclusivo con llave NFC</li>
+              <li>TV 43" incluida</li>
+              <li>Almacenamiento y archivador</li>
+              <li>650 € / mes · 20h sala incluidas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="section__title" style="margin-top:3rem">Salas de Reuniones y Cabinas</h2>
+      <div class="spaces__grid spaces__grid--three">
+        <div class="space-card">
+          <img class="space-card__img"
+            src="https://images.unsplash.com/photo-1503428593586-e225b39bddfe?w=600&q=75"
+            alt="Sala de reuniones Alpha" loading="lazy" />
+          <div class="space-card__body">
+            <h3>Sala Alpha</h3>
+            <span class="badge">8 personas</span>
+            <p>TV 65", pizarra magnetica, videoconferencia 4K y servicio de catering disponible.</p>
+            <p class="price-inline"><strong>15 € / hora</strong></p>
+          </div>
+        </div>
+        <div class="space-card">
+          <img class="space-card__img"
+            src="https://images.unsplash.com/photo-1606761568499-6d2451b23c66?w=600&q=75"
+            alt="Sala de reuniones Beta" loading="lazy" />
+          <div class="space-card__body">
+            <h3>Sala Beta</h3>
+            <span class="badge">12 personas</span>
+            <p>Proyector 4K, sistema de audio, pizarras y mesas modulares reordenables.</p>
+            <p class="price-inline"><strong>18 € / hora</strong></p>
+          </div>
+        </div>
+        <div class="space-card">
+          <img class="space-card__img"
+            src="https://images.unsplash.com/photo-1521898284481-a5ec348cb555?w=600&q=75"
+            alt="Cabinas de llamadas privadas" loading="lazy" />
+          <div class="space-card__body">
+            <h3>Cabinas de llamadas</h3>
+            <span class="badge">2 disponibles</span>
+            <p>Cabinas insonorizadas para videollamadas y llamadas privadas. Sin reserva previa.</p>
+            <p class="price-inline"><strong>3 € / hora</strong></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container cta-section__inner">
+      <h2>¿Quieres ver los espacios en persona?</h2>
+      <p>Organizamos visitas guiadas sin compromiso de lunes a viernes.</p>
+      <a href="contacto.html" class="btn btn--primary">Solicitar visita gratuita</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="logo__icon">&#x2B21;</span> <strong>NexHub</strong> Coworking
+        <p>Calle Innovacion, 42 · Madrid · 28001</p>
+      </div>
+      <div class="footer__links">
+        <a href="espacios.html">Espacios</a>
+        <a href="tarifas.html">Tarifas</a>
+        <a href="comunidad.html">Comunidad</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <p class="footer__copy">&copy; 2025 NexHub Coworking. Proyecto Intermodular DAW.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

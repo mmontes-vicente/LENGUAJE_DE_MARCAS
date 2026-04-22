@@ -1,143 +1,576 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!--
+    ==========================================================
+    METADATOS BÁSICOS DEL DOCUMENTO
+    ==========================================================
+  -->
+
+  <!--
+    charset="UTF-8"
+    ----------------
+    Define la codificación de caracteres del documento.
+
+    ¿Por qué es importante?
+    - Permite mostrar bien tildes, eñes y símbolos.
+    - Evita caracteres raros o errores de codificación.
+
+    Buena práctica:
+    siempre incluirlo al principio del <head>.
+  -->
   <meta charset="UTF-8">
+
+  <!--
+    viewport
+    --------
+    Hace que la página se adapte correctamente en móviles y tablets.
+
+    width=device-width
+    -> usa el ancho real del dispositivo
+
+    initial-scale=1.0
+    -> establece un zoom inicial normal
+
+    Sin esta línea, el diseño responsive de Tailwind no funcionaría bien.
+  -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--
+    ==========================================================
+    CARGA DE TAILWIND DESDE CDN
+    ==========================================================
+
+    Este script carga Tailwind CSS directamente desde internet.
+
+    Ventajas:
+    - No hace falta instalar nada
+    - Perfecto para aprender o trabajar en clase
+    - Permite usar clases Tailwind directamente
+
+    Inconvenientes:
+    - No es lo ideal para producción real
+    - No puedes optimizar tanto como con npm
+    - Algunas configuraciones avanzadas son más limitadas
+  -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
   <title>Monociclos Mayteh</title>
 </head>
+
+<!--
+  ==========================================================
+  BODY
+  ==========================================================
+
+  class="bg-slate-100 text-slate-800"
+
+  1) bg-slate-100
+     - bg = background (fondo)
+     - slate = familia de color gris azulado
+     - 100 = tono claro
+
+     Resultado:
+     toda la página tendrá un fondo gris muy suave.
+
+     ¿Por qué usarlo?
+     - es más agradable que el blanco puro
+     - hace que los bloques blancos destaquen mejor
+     - da un estilo moderno
+
+     Alternativas:
+     - bg-white
+     - bg-slate-50
+     - bg-gray-50
+     - bg-blue-50
+
+  2) text-slate-800
+     - text = color del texto
+     - slate = misma familia de color
+     - 800 = tono oscuro
+
+     Resultado:
+     el texto general será gris oscuro.
+
+     ¿Por qué usarlo?
+     - suele verse mejor que el negro puro
+     - reduce dureza visual
+     - combina muy bien con fondos claros
+
+     Alternativas:
+     - text-black
+     - text-slate-900
+     - text-gray-700
+-->
 <body class="bg-slate-100 text-slate-800">
 
   <!-- 
+    ==========================================================
     CONTENEDOR GENERAL DE LA PÁGINA
+    ==========================================================
 
     Aquí agrupamos todo el contenido del sitio web.
-    En HTML no es obligatorio usar un contenedor general,
-    pero muchas veces se usa para organizar mejor la estructura.
+
+    class="min-h-screen flex flex-col"
+
+    1) min-h-screen
+       - min-h = minimum height
+       - screen = alto de la pantalla
+
+       Equivale aproximadamente a:
+       min-height: 100vh;
+
+       ¿Qué consigue?
+       - la página ocupa como mínimo toda la altura visible
+       - ayuda a que el footer quede abajo
+       - es útil en layouts completos
+
+       Alternativas:
+       - h-screen
+       - min-h-full
+       - h-full
+
+    2) flex
+       - activa Flexbox en este contenedor
+
+    3) flex-col
+       - coloca los hijos del contenedor en vertical
+
+       Resultado típico:
+       header
+       main
+       footer
   -->
   <div class="min-h-screen flex flex-col">
 
     <!-- 
-      =========================================
+      ==========================================================
       CABECERA DE LA PÁGINA
-      =========================================
+      ==========================================================
 
-      La etiqueta <header> representa la cabecera del sitio o de una sección.
-      Normalmente contiene el título, logotipo, eslogan y, muchas veces,
-      el menú de navegación principal.
+      La etiqueta <header> representa la cabecera del sitio.
+
+      class="bg-slate-900 text-white shadow-lg"
+
+      1) bg-slate-900
+         -> fondo oscuro, casi negro
+
+      2) text-white
+         -> texto blanco para crear contraste
+
+      3) shadow-lg
+         -> sombra grande
+
+      ¿Qué consigue esta combinación?
+      - una cabecera visualmente fuerte
+      - contraste claro entre header y resto de la página
+      - separación visual gracias a la sombra
+
+      Alternativas:
+      - bg-slate-800
+      - bg-blue-700
+      - shadow-md
+      - shadow-xl
     -->
     <header class="bg-slate-900 text-white shadow-lg">
 
-      <div class="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-      
-      <!-- 
-        BLOQUE DEL TÍTULO PRINCIPAL DE LA WEB
+      <!--
+        ========================================================
+        CONTENEDOR INTERNO DEL HEADER
+        ========================================================
 
-        <h1> debe ser el encabezado principal del documento.
-        En este caso, el nombre del sitio.
+        class="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-6"
+
+        Este patrón aparece muchísimo en webs modernas:
+        ancho máximo + centrado + padding
+
+        1) max-w-7xl
+           -> limita el ancho máximo del contenido
+
+           ¿Para qué sirve?
+           - evita que en pantallas muy grandes todo se estire demasiado
+           - mejora la legibilidad
+           - centra la mirada del usuario
+
+           Alternativas:
+           - max-w-5xl
+           - max-w-6xl
+           - max-w-screen-xl
+           - max-w-full
+
+        2) mx-auto
+           -> margin-left y margin-right automáticos
+           -> centra el bloque horizontalmente
+
+        3) px-4
+           -> padding horizontal en móvil
+
+        4) md:px-8
+           -> desde tamaño md, más padding lateral
+
+        5) lg:px-12
+           -> desde tamaño lg, aún más padding lateral
+
+           Aquí se está usando responsive por tamaños:
+           - móvil: px-4
+           - tablet: px-8
+           - escritorio: px-12
+
+        6) py-6
+           -> padding vertical arriba y abajo
+
+           Alternativas:
+           - py-4
+           - py-8
       -->
-      <div class="text-center md:text-left">
-        <h1 class="text-3xl md:text-4xl font-extrabold tracking-wide">Monociclos Mayteh</h1>
-        <p class="text-slate-300 text-sm md:text-base">Equilibrio, diversión y movimiento sobre una rueda</p>
-      </div>
+      <div class="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 py-6">
 
-      <!-- 
-        =========================================
-        MENÚ DE NAVEGACIÓN
-        =========================================
+        <!--
+          ======================================================
+          LAYOUT DEL HEADER CON FLEXBOX
+          ======================================================
 
-        La etiqueta <nav> se usa para los enlaces principales de navegación.
-        Dentro solemos colocar una lista de enlaces con <ul> y <li>.
-      -->
-      <nav class="w-full md:w-auto">
-        <ul class="flex flex-wrap justify-center gap-3 md:gap-6 text-sm md:text-base font-medium">
-          <li><a href="#inicio" class="hover:text-yellow-300 transition duration-300">Inicio</a></li>
-          <li><a href="#catalogo" class="hover:text-yellow-300 transition duration-300">Catálogo</a></li>
-          <li><a href="#ventajas" class="hover:text-yellow-300 transition duration-300">Ventajas</a></li>
-          <li><a href="#academia" class="hover:text-yellow-300 transition duration-300">Academia</a></li>
-          <li><a href="#contacto" class="hover:text-yellow-300 transition duration-300">Contacto</a></li>
-        </ul>
-      </nav>
-      </div>
+          class="flex flex-col md:flex-row justify-between items-center gap-4"
+
+          1) flex
+             -> activa Flexbox
+
+          2) flex-col
+             -> en móvil, los bloques se apilan en columna
+
+          3) md:flex-row
+             -> desde md, pasan a colocarse en fila
+
+             Resultado:
+             - móvil: logo arriba, menú abajo
+             - escritorio: logo a la izquierda, menú a la derecha
+
+          4) justify-between
+             -> reparte el espacio dejando un bloque al inicio y otro al final
+
+          5) items-center
+             -> alinea verticalmente los elementos
+
+          6) gap-4
+             -> espacio entre ambos bloques
+
+          Alternativas:
+          - justify-center
+          - justify-start
+          - items-start
+          - gap-6
+        -->
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+
+          <!--
+            ====================================================
+            BLOQUE DE MARCA / LOGOTIPO
+            ====================================================
+
+            class="text-center md:text-left"
+
+            1) text-center
+               -> en móvil el texto se centra
+
+            2) md:text-left
+               -> desde md se alinea a la izquierda
+
+            ¿Por qué?
+            - en móvil suele quedar más equilibrado centrado
+            - en escritorio encaja mejor alineado a la izquierda
+
+            Alternativas:
+            - text-left
+            - text-right
+          -->
+          <div class="text-center md:text-left">
+
+            <!--
+              class="text-3xl md:text-4xl font-extrabold tracking-wide"
+
+              1) text-3xl
+                 -> tamaño grande del texto en móvil
+
+              2) md:text-4xl
+                 -> tamaño aún mayor desde md
+
+              3) font-extrabold
+                 -> grosor muy alto, ideal para un título de marca
+
+              4) tracking-wide
+                 -> aumenta ligeramente el espacio entre letras
+
+              Resultado:
+              un h1 potente, visible y con presencia visual
+
+              Alternativas:
+              - text-2xl
+              - text-5xl
+              - font-bold
+              - font-black
+              - tracking-normal
+            -->
+            <h1 class="text-3xl md:text-4xl font-extrabold tracking-wide">Monociclos Mayteh</h1>
+
+            <!--
+              class="text-slate-300 text-sm md:text-base"
+
+              1) text-slate-300
+                 -> color gris claro dentro del fondo oscuro
+
+              2) text-sm
+                 -> tamaño pequeño en móvil
+
+              3) md:text-base
+                 -> tamaño normal desde md
+
+              Resultado:
+              el subtítulo acompaña al h1 pero no compite con él
+
+              Alternativas:
+              - text-slate-400
+              - text-xs
+              - text-lg
+            -->
+            <p class="text-slate-300 text-sm md:text-base">Equilibrio, diversión y movimiento sobre una rueda</p>
+          </div>
+
+          <!-- 
+            ====================================================
+            MENÚ DE NAVEGACIÓN
+            ====================================================
+
+            La etiqueta <nav> se usa para los enlaces principales.
+
+            class="w-full md:w-auto"
+
+            1) w-full
+               -> en móvil el nav ocupa todo el ancho
+
+            2) md:w-auto
+               -> desde md vuelve a ocupar solo el ancho necesario
+
+            ¿Por qué?
+            - en móvil facilita centrar o envolver el menú
+            - en escritorio no hace falta que ocupe todo el ancho
+
+            Alternativas:
+            - w-auto
+            - w-full fijo
+          -->
+          <nav class="w-full md:w-auto">
+
+            <!--
+              class="flex flex-wrap justify-center gap-3 md:gap-6 text-sm md:text-base font-medium"
+
+              1) flex
+                 -> los <li> se colocan en línea
+
+              2) flex-wrap
+                 -> si no caben, saltan de línea
+
+              3) justify-center
+                 -> centra los enlaces horizontalmente
+
+              4) gap-3
+                 -> espacio entre enlaces en móvil
+
+              5) md:gap-6
+                 -> más separación en pantallas medianas
+
+              6) text-sm
+                 -> tamaño pequeño del texto
+
+              7) md:text-base
+                 -> tamaño normal desde md
+
+              8) font-medium
+                 -> grosor medio, más visible que normal
+
+              Alternativas:
+              - justify-start
+              - flex-nowrap
+              - gap-2
+              - gap-8
+              - font-semibold
+            -->
+            <ul class="flex flex-wrap justify-center gap-3 md:gap-6 text-sm md:text-base font-medium ">
+              <li>
+                <!--
+                  hover:text-yellow-300
+                  -> cambia el color al pasar el ratón
+
+                  transition
+                  -> activa transición suave
+
+                  duration-300
+                  -> la transición dura 300 milisegundos
+
+                  Alternativas:
+                  - hover:text-cyan-300
+                  - hover:underline
+                  - duration-150
+                -->
+                <a href="#inicio" class="hover:text-yellow-300 transition duration-300">Inicio</a>
+              </li>
+              <li><a href="#catalogo" class="hover:text-yellow-300 transition duration-300">Catálogo</a></li>
+              <li><a href="#ventajas" class="hover:text-yellow-300 transition duration-300">Ventajas</a></li>
+              <li><a href="#academia" class="hover:text-yellow-300 transition duration-300">Academia</a></li>
+              <li><a href="#contacto" class="hover:text-yellow-300 transition duration-300">Contacto</a></li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </header>
 
     <!-- 
-      =========================================
+      ==========================================================
       HERO O SECCIÓN PRINCIPAL DE PRESENTACIÓN
-      =========================================
+      ==========================================================
 
-      Aunque "hero" no es una etiqueta HTML, normalmente se construye
-      con <section> o <div>.
+      Esta es la zona más destacada visualmente al inicio de la página.
 
-      Esta es la parte visual o informativa más destacada al inicio
-      de la página.
+      class="bg-gradient-to-r from-cyan-600 to-blue-700 text-white"
+
+      1) bg-gradient-to-r
+         -> crea un degradado de izquierda a derecha
+
+      2) from-cyan-600
+         -> color inicial del degradado
+
+      3) to-blue-700
+         -> color final del degradado
+
+      4) text-white
+         -> texto blanco para contrastar con el fondo
+
+      Resultado:
+      hero con fondo potente, moderno y llamativo
+
+      Alternativas:
+      - bg-gradient-to-b
+      - from-blue-500
+      - to-indigo-700
+      - bg-cyan-600
     -->
     <section id="inicio" class="bg-gradient-to-r from-cyan-600 to-blue-700 text-white">
 
+      <!--
+        class="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-24"
+
+        Mismo patrón de contenedor centrado.
+
+        1) max-w-7xl
+        2) mx-auto
+        3) px-4
+        4) md:px-8
+
+        5) py-16
+           -> padding vertical grande
+
+        6) md:py-24
+           -> padding vertical aún mayor desde md
+
+        ¿Qué consigue?
+        - el hero tiene aire
+        - parece una sección importante
+      -->
       <div class="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-24">
-      <div class="flex flex-col lg:flex-row items-center gap-6">
-      <!-- 
-        PARTE PRINCIPAL DEL HERO:
-        mensaje, llamada de atención y botones/enlaces
-      -->
-      <div class="flex-1">
-        <p class="uppercase traking-[0.2em]">Tienda especializada</p>
-          <h2>Descubre el mundo del monociclo con estilo</h2>
-        <p>
-          En Monociclos Mayteh encontrarás monociclos para iniciarte,
-          mejorar tu técnica o disfrutar del freestyle, el paseo urbano
-          y la aventura.
-        </p>
 
-        <!-- 
-          ENLACES DE ACCIÓN
+        <!--
+          class="flex flex-col lg:flex-row items-center gap-10"
 
-          Aunque visualmente después podrían parecer botones,
-          en HTML puro siguen siendo enlaces.
+          1) flex
+             -> activa Flexbox
+
+          2) flex-col
+             -> en móvil, todo en una columna
+
+          3) lg:flex-row
+             -> desde lg, dos columnas en horizontal
+
+          4) items-center
+             -> centra verticalmente los bloques
+
+          5) gap-10
+             -> separación grande entre bloques
+
+          Resultado:
+          - móvil: texto arriba, bloque secundario abajo
+          - escritorio: texto a la izquierda, información a la derecha
         -->
-        <div>
-          <a href="#catalogo">Ver modelos</a>
-          <a href="#academia">Aprender a montar</a>
+        <div class="flex flex-col lg:flex-row items-center gap-10">
+
+          <!-- 
+            PARTE PRINCIPAL DEL HERO:
+            mensaje, llamada de atención y botones/enlaces
+
+            class="flex-1"
+
+            flex-1
+            -> esta columna puede crecer y compartir espacio con la otra
+          -->
+          <div class="flex-1">
+
+            <!--
+              class="uppercase tracking-[0.2em]"
+
+              1) uppercase
+                 -> convierte visualmente el texto en mayúsculas
+
+              2) tracking-[0.2em]
+                 -> aumenta el espaciado entre letras con un valor personalizado
+
+              Este tipo de texto se usa mucho como pequeña etiqueta o subtítulo decorativo.
+            -->
+            <p class="uppercase tracking-[0.2em]">Tienda especializada</p>
+
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-black leading-type mb-6">Descubre el mundo del monociclo con estilo</h2>
+
+            <p class="tex-lg md:text-xl text-cyan-50 mb-8 max-w-2xl">
+              En Monociclos Mayteh encontrarás monociclos para iniciarte,
+              mejorar tu técnica o disfrutar del freestyle, el paseo urbano
+              y la aventura.
+            </p>
+
+            <div class="flex flex-wrap gap-3">
+              <a href="#catalogo" class="bg-yellow-400 text-slate-900 font-bold px-6 py-3 rounded-xl hover:bg-yellow-300 transition duration-300 shadow-md">Ver modelos</a>
+              <a href="#academia" class="border-1 border-white text-white font-semibold px-6 py-3 rounded-xl hover:bg-white hover:text-blue-700 transition duration-300">Aprender a montar</a>
+            </div>
+          </div>
+
+          <!-- 
+            SEGUNDA PARTE DEL HERO
+          -->
+          <div class="bg-white/10 backdrop-blur-3xl rounded-2xl p-6 shadow-xl border border-white/20">
+          <div class="grid grid-cols-2 overflow-auto gap-4">
+            <div class="bg-white/10 rounded-2xl p-6">
+              <p class="tex-sm text-cyan-100">Modelo destacado</p>
+              <h3 class="text-xl font-bold mt-2">Mayteh Urban Pro</h3>
+              <p class="mt-2 text-cyan-50 text-sm">Ligero, resistente y perfecto para ciudad.</p>
+            </div>
+
+            <div class="bg-white/10 rounded-2xl p-6">
+              <p class="tex-sm text-cyan-100">Uso recomendado</p>
+              <h3 class="text-xl font-bold mt-2">Iniciación</h3>
+              <p class="mt-2 text-cyan-50 text-sm">Ideal para quienes empiezan a trabajar el equilibrio.</p>
+            </div>
+
+            <div class="bg-white/10 rounded-2xl p-6">
+              <p class="tex-sm text-cyan-100">Tamaño popular</p>
+              <h3 class="text-xl font-bold mt-2">20 pulgadas</h3>
+              <p class="mt-2 text-cyan-50 text-sm">Muy versátil para aprendizaje y trucos básicos.</p>
+            </div>
+
+            <div class="bg-white/10 rounded-2xl p-6">
+              <p class="tex-sm text-cyan-100">Comunidad</p>
+              <h3 class="text-xl font-bold mt-2">+500 alumnos</h3>
+              <p class="mt-2 text-cyan-50 text-sm">Personas que han aprendido con nuestro método.</p>
+            </div>
+          </div>
+          </div>  
+
         </div>
-      </div>
-
-      <!-- 
-        SEGUNDA PARTE DEL HERO
-
-        Aquí añadimos información destacada en formato de bloques.
-        Más adelante, con CSS o Tailwind, esto podría colocarse
-        en columnas o tarjetas.
-      -->
-      <div>
-
-        <div>
-          <p>Modelo destacado</p>
-          <h3>Mayteh Urban Pro</h3>
-          <p>Ligero, resistente y perfecto para ciudad.</p>
-        </div>
-
-        <div>
-          <p>Uso recomendado</p>
-          <h3>Iniciación</h3>
-          <p>Ideal para quienes empiezan a trabajar el equilibrio.</p>
-        </div>
-
-        <div>
-          <p>Tamaño popular</p>
-          <h3>20 pulgadas</h3>
-          <p>Muy versátil para aprendizaje y trucos básicos.</p>
-        </div>
-
-        <div>
-          <p>Comunidad</p>
-          <h3>+500 alumnos</h3>
-          <p>Personas que han aprendido con nuestro método.</p>
-        </div>
-
-      </div>
-      </div>
       </div>
     </section>
 
@@ -147,17 +580,14 @@
       =========================================
 
       La etiqueta <main> contiene el contenido central del documento.
-      Debe existir solo una vez por página.
     -->
     <main>
 
       <!-- 
         SECCIÓN PRINCIPAL DE CONTENIDO
-
-        Aquí colocamos la parte más importante de la página.
-        Dentro hay varias secciones temáticas.
       -->
-      <section>
+      <div class="max-w-7xl mx-auto px-4 md:px-8 py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">  
+      <section class="lg:col-span-2 space-y-10">
 
         <!-- 
           =========================================
@@ -166,14 +596,13 @@
 
           Mostramos productos o modelos destacados.
         -->
+
         <section id="catalogo">
           <h2>Catálogo destacado</h2>
           <p>Ejemplo de catálogo de monociclos disponibles.</p>
 
           <!-- 
             CONTENEDOR DE PRODUCTOS
-
-            Más adelante esto podría convertirse en un layout de columnas.
           -->
           <div>
 
@@ -203,7 +632,6 @@
               <p>219 €</p>
               <button>Comprar</button>
             </article>
-
           </div>
         </section>
 
@@ -271,6 +699,7 @@
         </section>
 
       </section>
+      </div>
 
       <!-- 
         =========================================
@@ -278,14 +707,6 @@
         =========================================
 
         <aside> representa contenido complementario.
-        No es la parte principal, pero sí está relacionado con ella.
-
-        Por ejemplo:
-        - datos rápidos
-        - promociones
-        - consejos
-        - anuncios
-        - información secundaria
       -->
       <aside>
 
