@@ -30,7 +30,7 @@ public class MenuController {
         int opcion;
         do {
             System.out.println("\n" + "═".repeat(45));
-            System.out.println("   ⬡  TECHSPACE COWORKING — Sistema de Gestión");
+            System.out.println("   ⬡  NEXHUB COWORKING — Aplicación de Gestión");
             System.out.println("═".repeat(45));
             System.out.println("  1.  Gestión de Socios");
             System.out.println("  2.  Gestión de Espacios");

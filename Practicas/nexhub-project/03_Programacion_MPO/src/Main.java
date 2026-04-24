@@ -4,7 +4,7 @@ import db.Conexion;
 
 /**
  * ===================================================
- * TECHSPACE COWORKING — Aplicación de Gestión
+ * NEXHUB COWORKING — Aplicación de Gestión
  * ===================================================
  * Proyecto Intermodular 1º DAW
  * Módulo: Programación (0485)
@@ -21,7 +21,7 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("═".repeat(50));
-        System.out.println("   ⬡  TechSpace Coworking — Sistema de Gestión");
+        System.out.println("   ⬡  NexHub Coworking — Sistema de Gestión");
         System.out.println("   Proyecto Intermodular 1º DAW");
         System.out.println("═".repeat(50));
 
