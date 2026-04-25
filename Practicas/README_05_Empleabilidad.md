@@ -2,11 +2,11 @@
 
 <img src="https://img.shields.io/badge/1.º_DAW-Prometeo-6c63ff?style=for-the-badge" />
 <img src="https://img.shields.io/badge/Módulo-1709-22d9a0?style=for-the-badge" />
-<img src="https://img.shields.io/badge/2025-Madrid-b06bff?style=for-the-badge" />
+<img src="https://img.shields.io/badge/2026-Madrid-b06bff?style=for-the-badge" />
 
 # Itinerario Personal para la Empleabilidad
 
-**Módulo 1709 · Prometeo by The Power · 1.º DAW · 2025**
+**Módulo 1709 · Prometeo by The Power · 1.º DAW · 2026**
 
 </div>
 
